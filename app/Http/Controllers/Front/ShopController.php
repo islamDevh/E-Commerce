@@ -11,8 +11,8 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $Products = Product::all();
+        $products = Product::all();
         $categories = Category::all();
-        return view('front.shop.index',compact('categories','Products'));
+        return view('front.shop.index',compact('categories','products'));
     }
 }

@@ -12,7 +12,6 @@
 				</ul>
 			</div>
 			<div class=" main-content-area">
-
 				<div class="wrap-iten-in-cart">
 					<h3 class="box-title">Products Name</h3>
 					<ul class="products-cart">
@@ -23,15 +22,18 @@
 							<div class="product-name">
 								<a class="link-to-product" href="#">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</a>
 							</div>
-							<div class="price-field produtc-price"><p class="price">$256.00</p></div>
+
+
+                            <div class="price-field produtc-price"><p  class="price">$256.00</p></div>
 							<div class="quantity">
 								<div class="quantity-input">
-									<input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >									
+									<input type="text" class="input-quantity" name="product_quatity" value="1" data-max="120" pattern="[0-9]*"  >
 									<a class="btn btn-increase" href="#"></a>
 									<a class="btn btn-reduce" href="#"></a>
 								</div>
 							</div>
-							<div class="price-field sub-total"><p class="price">$256.00</p></div>
+							<div class="price-field sub-total"><p  class="price">$256.00</p></div>
+
 							<div class="delete">
 								<a href="#" class="btn btn-delete" title="">
 									<span>Delete from your cart</span>
@@ -49,7 +51,7 @@
 							<div class="price-field produtc-price"><p class="price">$256.00</p></div>
 							<div class="quantity">
 								<div class="quantity-input">
-									<input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*">									
+									<input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*">
 									<a class="btn btn-increase" href="#"></a>
 									<a class="btn btn-reduce" href="#"></a>
 								</div>
@@ -61,7 +63,7 @@
 									<i class="fa fa-times-circle" aria-hidden="true"></i>
 								</a>
 							</div>
-						</li>												
+						</li>
 					</ul>
 				</div>
 
@@ -239,4 +241,21 @@
 		</div><!--end container-->
 
 	</main>
+@endsection
+@section('js')
+
+<script>
+    // document.querySelectorAll('.input-quantity').forEach(function(element) {
+    //     element.addEventListener('change', function(e) {
+
+    //     }
+    // }
+
+    alert('dsddsds')
+   ; let content = document.getElementByClassName('input-quantity')[0];
+    // let firstChild = content.firstChild.nodeName;
+    console.log(content);
+
+
+</script>
 @endsection

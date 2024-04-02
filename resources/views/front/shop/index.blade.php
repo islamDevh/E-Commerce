@@ -20,7 +20,7 @@
                     <h1 class="shop-title">Category & Phones</h1>
                 </div><!--end wrap shop control-->
                 <div class="row">
-                @foreach ($Products as $Product)
+                @foreach ($products as $Product)
                     <ul class="product-list grid-products equal-container">
                         <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
                             <div class="product product-style-3 equal-elem ">
@@ -65,7 +65,7 @@
                     </div>
                 </div><!-- Categories widget-->
 
-                
+
 
                 <div class="widget mercado-widget filter-widget price-filter">
                     <h2 class="widget-title">Price</h2>
@@ -78,7 +78,7 @@
                         </p>
                     </div>
                 </div><!-- Price-->
-                
+
 
                 <div class="widget mercado-widget filter-widget">
                     <h2 class="widget-title">Color</h2>

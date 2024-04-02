@@ -26,27 +26,9 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <!-- massage add-->
-                                @if (session()->has('Add'))
+                                @if (session()->has('success'))
                                     <div class="alert alert-success"><i class="fas fa-check-circle"></i>
-                                        <strong>{{ session()->get('Add') }}</strong>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                @endif
-                                <!--massage edit -->
-                                @if (session()->has('edit'))
-                                    <div class="alert alert-success"><i class="fas fa-check-circle"></i>
-                                        <strong>{{ session()->get('edit') }}</strong>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                @endif
-                                <!--massage delete -->
-                                @if (session()->has('delete'))
-                                    <div class="alert alert-success"><i class="fas fa-check-circle"></i>
-                                        <strong>{{ session()->get('delete') }}</strong>
+                                        <strong>{{ session()->get('success') }}</strong>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -78,7 +60,7 @@
                                                             width="55" height="55" />
                                                     </a>
                                                 </td>
-                                                
+
                                                 <td>{{ $product->price }}</td>
                                                 <td>{{ $product->offer }}</td>
 

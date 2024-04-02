@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Nette\Utils\Image;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\ImageProduct;
+use Illuminate\Http\Request;
+use App\Http\Traits\imageTrait;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ProductRequest;
 use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
-use App\Http\Requests\ProductRequest;
-use App\Http\Traits\imageTrait;
-use App\Models\Category;
-use App\Models\Product;
-use Illuminate\Http\Request;
-use Nette\Utils\Image;
 
 class ProductController extends Controller
 {
@@ -25,21 +27,40 @@ class ProductController extends Controller
         return view('admin.products.create', ['categories' => Category::all()]);
     }
 
-    
-    public function store(StoreProductRequest $request)
-    {
-        $filename = $this->uploadImage($request->image, Product::PATH);
-        Product::create([
-            'name'        => $request->name,
-            'category_id' => $request->category_id,
-            'description' => $request->description,
-            'price'       => $request->price,
-            'offer'       => $request->offer,
-            'image'       => $filename,
-        ]);
-        session()->flash('Add','Product Add secsefuly');
-        return redirect()->route('product.index');
 
+    public function store(request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $filename = $this->uploadImage($request->image, Product::PATHIMAGE);
+            $product = Product::create([
+                'name'        => $request->name,
+                'category_id' => $request->category_id,
+                'description' => $request->description,
+                'price'       => $request->price,
+                'offer'       => $request->offer,
+                'image'       => $filename,
+            ]);
+
+            $productId = $product->id; // Get the ID of the created product
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $filename = $this->uploadImage($image, Product::PATHIMAGES);
+                ImageProduct::create([
+                    'product_id' => $productId, // Use the retrieved product ID
+                    'image'      => $filename,
+                ]);
+            }
+            DB::commit();
+
+            session()->flash('success', 'Product added successfully');
+            return redirect()->route('product.create');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            session()->flash('error', 'Failed to add product. Please try again.');
+            return redirect()->back()->withInput();
+        }
     }
 
     public function edit(Product $product)
@@ -47,27 +68,53 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('admin.products.edit', compact('product', 'categories'));
     }
-    
+
     public function update(UpdateProductRequest $request, Product $product)
-    {    
-        $filename = $this->uploadImage($request->image, Product::PATH,$product->image);
-        $product->update([
-            'name'        => $request->name,
-            'category_id' => $request->category_id,
-            'description' => $request->description,
-            'price'       => $request->price,
-            'offer'       => $request->offer,
-            'image'       => $filename,
-        ]);
-        session()->flash('edit','Product Updated Successfully');
-        return  redirect()->route('product.index');
+    {
+        try {
+            DB::beginTransaction();
+
+            // If a new image is uploaded, update it
+            if ($request->hasFile('image')) {
+                $filename = $this->uploadImage($request->image, Product::PATHIMAGE, $product->image);
+                $product->image = $filename;
+            }
+
+            // Update other product details
+            $product->name = $request->name;
+            $product->category_id = $request->category_id;
+            $product->description = $request->description;
+            $product->price = $request->price;
+            $product->offer = $request->offer;
+            $product->save();
+
+            // Handle other images
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $filename = $this->uploadImage($image, Product::PATHIMAGES);
+                    ImageProduct::create([
+                        'product_id' => $product->id,
+                        'image' => $filename,
+                    ]);
+                }
+            }
+
+            DB::commit();
+            session()->flash('success', 'Product updated successfully');
+            return redirect()->route('product.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            session()->flash('error', 'Failed to update product. Please try again.');
+            return redirect()->back()->withInput();
+        }
     }
+
 
     public function destroy(Product $product)
     {
         $this->removeImage($product->image);
         $product->delete();
-        session()->flash('delete', 'Product Deleted Successfully');
+        session()->flash('success', 'Product Deleted Successfully');
         return redirect()->route('product.index');
     }
 

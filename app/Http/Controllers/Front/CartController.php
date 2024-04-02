@@ -6,10 +6,13 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\Session\Session;
 
 class CartController extends Controller
 {
+
+
     public function index(){
         $Cart = Cart::all();
         return view('Front.cart.index',compact('Cart'));
@@ -25,14 +28,12 @@ class CartController extends Controller
                 'offer'      => $request->offer,
                 'quantity'   => $request['product-quatity'],
             ]);
-            return "done";
+            session()->flash('success', 'Product added successfully');
+            return redirect()->route('ProductDetail.index', ['id' => $request->product_id]);
         }else{
             return view('auth.login');
         }
     }
 
-    public function CartItem(){
-        $UserId = session('user')->getId();
-        return Cart::Whare('user_id',$UserId)->count();
-    }
 }
+

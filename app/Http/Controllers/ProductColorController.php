@@ -10,7 +10,7 @@ use App\Http\Requests\Product\UpdateColorProductRequest;
 
 class ProductColorController extends Controller
 {
-   
+
     public function index()
     {
         return view('admin.colors.index', ['ColorProducts' => ColorProduct::paginate(pagination_count)]);
@@ -24,7 +24,7 @@ class ProductColorController extends Controller
 
 
     public function store(StoreColorProductRequest $request)
-    {   
+    {
         ColorProduct::create([
             'product_id' => $request->product_id,
             'name'       => $request->name,
@@ -34,7 +34,7 @@ class ProductColorController extends Controller
         return redirect()->route('color.index');
     }
 
-    
+
     public function edit($id)
     {
         $ColorProducts = ColorProduct::findOrFail($id);
@@ -54,7 +54,7 @@ class ProductColorController extends Controller
         return  redirect()->route('color.index');
     }
 
-    
+
 
     public function destroy(ColorProduct $color)
     {
