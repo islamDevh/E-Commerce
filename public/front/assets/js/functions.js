@@ -357,7 +357,7 @@
 	                    _this.addClass('active');
 	                    _this.parents().siblings('.tab-contents').find('.active').removeClass('active');
 	                    _this.parents().siblings('.tab-contents').find(_this.attr('href')).addClass('active');
-                    }  
+                    }
                 });
             }
 
@@ -398,22 +398,23 @@
 			}, 1000);
 		},
 
-		mercado_price_quantity: function(){
-			if($(".quantity-input").length > 0){
-				$(".quantity-input").on('click', '.btn', function(event) {
-					event.preventDefault();
-					var _this = $(this),
-						_input = _this.siblings('input[name=product-quatity]'),
-						_current_value = _this.siblings('input[name=product-quatity]').val(),
-						_max_value = _this.siblings('input[name=product-quatity]').attr('data-max');
-					if(_this.hasClass('btn-reduce')){
-						if (parseInt(_current_value, 10) > 1) _input.val(parseInt(_current_value, 10) - 1);
-					}else {
-						if (parseInt(_current_value, 10) < parseInt(_max_value, 10)) _input.val(parseInt(_current_value, 10) + 1);
-					}
-				});
-			}
-		},
+		mercado_price_quantity: function() {
+            if ($(".quantity-input").length > 0) {
+                $(".quantity-input").on('click', '.btn', function(event) {
+                    event.preventDefault();
+                    var _this = $(this),
+                        _input = _this.siblings('input[type="text"]'), 
+                        _current_value = _input.val(),
+                        _max_value = _input.attr('data-max');
+                    if (_this.hasClass('btn-reduce')) {
+                        if (parseInt(_current_value, 10) > 1) _input.val(parseInt(_current_value, 10) - 1);
+                    } else {
+                        if (parseInt(_current_value, 10) < parseInt(_max_value, 10)) _input.val(parseInt(_current_value, 10) + 1);
+                    }
+                });
+            }
+        },
+
 
 		mercado_remove_product_in_cart: function(){
 			if($(".products-cart .pr-cart-item").length > 0){

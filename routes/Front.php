@@ -50,6 +50,6 @@ Route::group(['prefix' => 'front'], function () {
     Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
         Route::get('/', [CartController::class, 'index'])->name('index');
         Route::post('/store', [CartController::class, 'store'])->name('store');
-
+        Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
     });
 });

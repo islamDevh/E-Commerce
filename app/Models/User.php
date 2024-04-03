@@ -13,11 +13,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     const PATH = 'upload/images/users/';
     use HasApiTokens, HasFactory, Notifiable;
-    //relation 1:M (user,orders)
+
     public function order(){ //one user can make more than order
         return $this->hasMany(Order::class,'orders');
     }
 
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
 
     protected $fillable = [
         'name',
