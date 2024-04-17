@@ -4,7 +4,6 @@ namespace App\View\Components;
 
 use App\Models\Setting;
 use Illuminate\View\Component;
-use App\Models\Cart;
 
 class FrontHeader extends Component
 {
@@ -25,13 +24,9 @@ class FrontHeader extends Component
      */
     public function render()
     {
-        $cartItemCount = 0;
-        if (auth()->check()) {
-            $userId = auth()->id();
-            $cartItemCount = Cart::where('user_id', $userId)->count();
-        }
+
 
         $settings = Setting::all();
-        return view('front.components.header', compact('settings', 'cartItemCount'));
+        return view('front.components.header', compact('settings'));
     }
 }

@@ -20,13 +20,13 @@
                     <h1 class="shop-title">Category & Phones</h1>
                 </div><!--end wrap shop control-->
                 <div class="row">
-                @foreach ($products as $Product)
+                    @foreach ($products as $Product)
                     <ul class="product-list grid-products equal-container">
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
+                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+                            <div class="product product-style-3 equal-elem">
                                 <div class="product-thumnail">
                                     <a href="{{route('ProductDetail.index', $Product->id) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{ asset($Product->image) }}"  alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                        <figure><img style="height: 200px; width: auto; display: block; margin: 0 auto;" src="{{ asset($Product->image) }}" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                                     </a>
                                 </div>
                                 <div class="product-info">
@@ -38,6 +38,7 @@
                         </li>
                     </ul>
                 @endforeach
+
                 </div>
 
                 <div class="wrap-pagination-info">

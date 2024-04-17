@@ -10,14 +10,6 @@
                     <li class="item-link"><span>detail</span></li>
                 </ul>
             </div>
-            @if (session()->has('success'))
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <h1 style="font-size: 20px;">{{ session()->get('success') }}</h1>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
             <div class="row">
                 <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                     <div class="wrap-product-detail">
@@ -51,7 +43,7 @@
                                 <div class="quantity">
                                     <span>Quantity:</span>
                                     <div class="quantity-input">
-                                        <input type="text" name="product-quatity" value="1" data-max="5"
+                                        <input type="text" name="quantity" value="1" data-max="5"
                                             pattern="[0-9]*">
                                         <a class="btn btn-reduce" href="#"></a>
                                         <a class="btn btn-increase" href="#"></a>

@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Cart;
-use App\Models\Product;
-use App\Models\ColorProduct;
 use App\Models\ImageProduct;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;

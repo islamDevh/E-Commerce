@@ -2,56 +2,56 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\App;
+use App\Repositories\Cart\CartRepository;
+use App\Repositories\Cart\CartModelRepository;
 
 class CartController extends Controller
 {
-
-
-    public function index()
+    protected $cart;
+    public function __construct(CartRepository $cart)
     {
-        $user_id = Auth::id();
-        $products = Cart::where('user_id', $user_id)->with('product')->get();
-        $product_info = Cart::where('user_id', $user_id)->get();
-        return view('Front.cart.index', compact('products','product_info'));
+        $this->cart = $cart;
     }
 
-    public function store(request $request)
+    public function index() //note : must be there in service provider
     {
-        if (Auth::check()) {
-            Cart::create([
-                'user_id'    => Auth::user()->id,
-                'product_id' => $request->product_id,
-                'price'      => $request->price,
-                'offer'      => $request->offer,
-                'quantity'   => $request['product-quatity'],
-            ]);
-            session()->flash('success', 'Product added successfully');
-            return redirect()->route('ProductDetail.index', ['id' => $request->product_id]);
-        } else {
-            return view('auth.login');
-        }
+        $total = $this->cart->total();
+        return view('Front.cart.index', ['cart' => $this->cart, 'total' => $total]);
     }
 
 
-    public function checkout(Request $request)
+    public function store(Request $request)
     {
-        dd($request->all());
-        $user_id = Auth::id();
-        $product_quantities = $request->input('product_quantity');
-
-        // Process the checkout logic here
-        // For demonstration purposes, let's just clear the user's cart
-        Cart::where('user_id', $user_id)->delete();
-
-        // Redirect to a thank you page or wherever you want to go after checkout
-        return redirect()->route('thankyou')->with('success', 'Thank you for your order!');
+        $request->validate([
+            'product_id' => ['required', 'int', 'exists:products,id'],
+            'quantity' => ['nullable', 'int', 'min:1'],
+        ]);
+        $product = Product::find($request->product_id);
+        $this->cart->add($product, $request->post('quantity'));
+        return redirect()->route('cart.index')->with('success', 'Product Added To Cart');
     }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'product_id' => ['required', 'int', 'exists:products,id'],
+            'quantity' => ['nullable', 'int', 'min:1'],
+        ]);
+        $product = Product::find($request->product_id);
+        $this->cart->update($product, $request->post('quantity'));
+    }
+
+    public function destroy(CartModelRepository $cart, $id)
+    {
+        $cart->delete($id);
+    }
+
+
+
+
+
 }
