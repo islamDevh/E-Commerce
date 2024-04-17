@@ -19,8 +19,7 @@ class CartController extends Controller
 
     public function index() //note : must be there in service provider
     {
-        $total = $this->cart->total();
-        return view('Front.cart.index', ['cart' => $this->cart, 'total' => $total]);
+        return view('Front.cart.index', ['cart' => $this->cart]);
     }
 
 

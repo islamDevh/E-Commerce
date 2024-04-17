@@ -2,16 +2,18 @@
 
 namespace App\View\Components;
 
-use App\Models\Setting;
 use Illuminate\View\Component;
-use App\Facades\Cart;
 
-class FrontHeader extends Component
+class CartMenu extends Component
 {
-    public $total;
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        $this->total = Cart::get()->count();
+        //
     }
 
     /**
@@ -21,7 +23,6 @@ class FrontHeader extends Component
      */
     public function render()
     {
-        $settings = Setting::all();
-        return view('front.components.header', compact('settings'));
+        return view('components.cart-menu');
     }
 }

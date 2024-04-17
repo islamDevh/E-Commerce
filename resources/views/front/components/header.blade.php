@@ -86,7 +86,7 @@
                             <a href="#" class="link-direction">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">0 item</span>
+                                    <span class="index">0 </span>
                                     <span class="title">Wishlist</span>
                                 </div>
                             </a>
@@ -95,7 +95,7 @@
                             <a href="{{route('cart.index')}}" class="link-direction">
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">items: 0</span>
+                                    <span class="index">items: {{ $total }}</span>
                                     <span class="title">CART</span>
                                 </div>
                             </a>

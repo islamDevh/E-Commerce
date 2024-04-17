@@ -63,7 +63,7 @@
                             <h4 class="title-box">Order Summary</h4>
                             <p class="summary-info" style="font-size: 18px;">
                                 <span class="title" style="font-weight: bold; font-size: 24px;">Total:</span>
-                                <span class="index" style="font-weight: bold; color: #333; font-size: 20px;">$ {{ $total }}</span>
+                                <span class="index" style="font-weight: bold; color: #333; font-size: 20px;">$ </span>
                             </p>
                         </div>
 
