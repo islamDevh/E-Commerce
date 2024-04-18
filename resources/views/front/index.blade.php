@@ -3,6 +3,12 @@
 <main id="main">
     <div class="container">
         <!--MAIN SLIDE-->
+        @if (session()->has('success'))
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong> {{ session()->get('success') }}</strong>
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    </div>
+                                @endif
         <div class="wrap-main-slide">
             <div class="slide-carousel owl-carousel style-nav-1" data-items="1" data-loop="1" data-nav="true" data-dots="false">
                 <div class="item-slide">

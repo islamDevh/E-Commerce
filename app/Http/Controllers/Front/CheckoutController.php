@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Front;
 
+use Throwable;
 use App\Models\Order;
+use App\Events\OrderCreated;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Cart\CartRepository;
-use Throwable;
 
 class CheckoutController extends Controller
 {
@@ -40,7 +41,6 @@ class CheckoutController extends Controller
                     'quantity' => $item->quantity,
                 ]);
             }
-
             $billingAddress = $request->only([
                 'first_name',
                 'last_name',
@@ -53,10 +53,12 @@ class CheckoutController extends Controller
             ]);
             $order->addresses()->create($billingAddress);
 
-
-            $cart->empty();
             DB::commit();
-            return redirect()->route('checkout.index')->with('success', 'Your order has been successfully placed.');
+
+            // event('order.created', $order, Auth::user());
+            event(new OrderCreated($order));
+
+            return redirect()->route('front.index')->with('success', 'Your order has been successfully placed.');
         } catch (Throwable $e) {
             DB::rollBack();
             throw $e;

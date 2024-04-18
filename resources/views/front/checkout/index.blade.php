@@ -12,14 +12,7 @@
 					<li class="item-link"><span>login</span></li>
 				</ul>
 			</div>
-            @if (session()->has('success'))
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <h1 style="font-size: 20px;">{{ session()->get('success') }}</h1>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+
 			<div class=" main-content-area">
 				<div class="wrap-address-billing">
 					<h3 class="box-title">Billing Address</h3>

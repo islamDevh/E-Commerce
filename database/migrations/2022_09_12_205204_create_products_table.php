@@ -14,11 +14,12 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id(); 
+            $table->id();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('name');
             $table->float('price');
             $table->text('description');
+            $table->smallInteger('quantity');
             $table->smallInteger('offer')->default(0);
             $table->string('image');
             $table->timestamps();
