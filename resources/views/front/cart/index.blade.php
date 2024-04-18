@@ -64,12 +64,12 @@
                             <h4 class="title-box">Order Summary</h4>
                             <p class="summary-info" style="font-size: 18px;">
                                 <span class="title" style="font-weight: bold; font-size: 24px;">Total:</span>
-                                <span class="index" style="font-weight: bold; color: #333; font-size: 20px;">$ </span>
+                                <span class="index" style="font-weight: bold; color: #333; font-size: 20px;">$ {{ $cart->total() }} </span>
                             </p>
                         </div>
 
                         <div class="checkout-info">
-                            <button type="submit" class="btn btn-checkout">Check out</button> <!-- Checkout button -->
+                            <a href="{{ route('checkout.index') }}" class="btn btn-checkout">Check out</a> <!-- Checkout button -->
                             <a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right"
                                     aria-hidden="true"></i></a>
                         </div>

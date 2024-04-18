@@ -10,6 +10,10 @@ class OrderProduct extends Pivot
 {
     use HasFactory;
 
+    protected $table = 'order_products';
+    protected $guarded = [];
+
+
     public $incrementing = true;
 
     public function product()

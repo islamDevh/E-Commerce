@@ -131,7 +131,7 @@
                                 <a href="{{route('cart.index')}}" class="link-term mercado-item-title">Cart</a>
                             </li>
                             <li class="menu-item">
-                                <a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
+                                <a href="{{route('checkout.index')}}" class="link-term mercado-item-title">Checkout</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{route('ContactUs.index')}}" class="link-term mercado-item-title">Contact Us</a>

@@ -19,11 +19,15 @@ class Order extends Model
     }
 
     public function products(){
-        return $this->belongsToMany(OrderProduct::class)
+        return $this->belongsToMany(Product::class, 'order_products')
         ->using(OrderProduct::class) // pivot table name
         ->withPivot([
             'product_name','price','quantity','options',
         ]);
+    }
+
+    public function addresses(){
+        return $this->hasMany(OrderAddress::class);
     }
 
     protected  static function booted()

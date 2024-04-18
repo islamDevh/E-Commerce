@@ -23,11 +23,6 @@ class CreateOrdersTable extends Migration
             $table->string('payment_method');
             $table->enum('status', ['pending', 'processing', 'delevering', 'completed', 'canceled'])->default('pending');
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('address');
-            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

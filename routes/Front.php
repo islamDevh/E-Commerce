@@ -5,6 +5,7 @@ use App\Http\Controllers\Front\ProductDetail;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\ShopController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\CheckoutController;
 use App\Http\Controllers\Front\RegisterController;
 use App\Http\Controllers\Front\ContactUsController;
 use App\Http\Controllers\Front\FrontPageController;
@@ -52,5 +53,10 @@ Route::group(['prefix' => 'front'], function () {
         Route::post('/store', [CartController::class, 'store'])->name('store');
         Route::post('/update', [CartController::class, 'update'])->name('update');
         Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    });
+
+    Route::group(['prefix' => 'checkout', 'as' => 'checkout.'], function () {
+        Route::get('/', [CheckoutController::class, 'index'])->name('index');
+        Route::post('/store', [CheckoutController::class, 'store'])->name('store');
     });
 });
