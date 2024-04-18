@@ -95,7 +95,7 @@
                             <a href="{{route('cart.index')}}" class="link-direction">
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">items: {{ $total }}</span>
+                                    <span class="index">items: {{ $count }}</span>
                                     <span class="title">CART</span>
                                 </div>
                             </a>

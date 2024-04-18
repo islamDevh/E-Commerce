@@ -403,7 +403,7 @@
                 $(".quantity-input").on('click', '.btn', function(event) {
                     event.preventDefault();
                     var _this = $(this),
-                        _input = _this.siblings('input[type="text"]'), 
+                        _input = _this.siblings('input[type="text"]'),
                         _current_value = _input.val(),
                         _max_value = _input.attr('data-max');
                     if (_this.hasClass('btn-reduce')) {
@@ -414,6 +414,7 @@
                 });
             }
         },
+
 
 
 		mercado_remove_product_in_cart: function(){

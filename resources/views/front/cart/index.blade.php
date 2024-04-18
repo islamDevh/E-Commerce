@@ -39,9 +39,10 @@
                                     </div>
                                     <div class="quantity">
                                         <div class="quantity-input">
-                                            <input type="text" name="quatity" value="{{$item->quantity}}" data-max="120" pattern="[0-9]*" >
+                                            <input type="text" name="quantity" value="{{$item->quantity}}" data-max="120" pattern="[0-9]*" >
                                             <a class="btn btn-increase" href="#"></a>
                                             <a class="btn btn-reduce" href="#"></a>
+                                            <input type="hidden" class="quantity-input" data-product-id="{{ $item->product->id }}" value="{{ $item->product->quantity }}">
                                         </div>
                                     </div>
                                     <div class="price-field sub-total">
@@ -91,5 +92,8 @@
 
 
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
 
+</script>
 @endsection

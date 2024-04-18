@@ -19,6 +19,7 @@ class CartController extends Controller
 
     public function index() //note : must be there in service provider
     {
+        
         return view('Front.cart.index', ['cart' => $this->cart]);
     }
 

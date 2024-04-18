@@ -15,11 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
             $table->float('total_price');
             $table->smallInteger('offer');
-            $table->dateTime('order_at');
+            $table->string('number');
+            $table->string('payment_method');
+            $table->enum('status', ['pending', 'processing', 'delevering', 'completed', 'canceled'])->default('pending');
+            $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
             $table->string('name');
             $table->string('email');
             $table->string('phone');

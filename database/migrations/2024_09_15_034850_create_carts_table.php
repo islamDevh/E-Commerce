@@ -23,6 +23,7 @@ class CreateCartsTable extends Migration
 
             $table->unsignedSmallInteger('quantity')->default(1);
             $table->json('options')->nullable(); //for color
+            $table->unique(['cookie_id', 'product_id']);
             $table->timestamps();
         });
     }

@@ -8,10 +8,10 @@ use App\Facades\Cart;
 
 class FrontHeader extends Component
 {
-    public $total;
+    public $count;
     public function __construct()
     {
-        $this->total = Cart::get()->count();
+        $this->count = Cart::get()->count();
     }
 
     /**
