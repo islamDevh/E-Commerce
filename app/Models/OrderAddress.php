@@ -11,4 +11,10 @@ class OrderAddress extends Model
     protected $guarded = [];
     public $timestamps = false;
 
+    public function getNameAttribute($value){
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+
+
 }

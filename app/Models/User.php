@@ -15,7 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     public function order(){ //one user can make more than order
-        return $this->hasMany(Order::class,'orders');
+        return $this->hasMany(Order::class);
     }
 
     public function cart()
