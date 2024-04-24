@@ -122,6 +122,12 @@
 											</div>
 										</div>
 									</div>
+                                    <a id="lightModeBtn" class="dropdown-item" href="#" onclick="toggleMode('light')">
+                                        <i class="bx bx-sun"></i> Light mode
+                                    </a>
+                                    <a id="darkModeBtn" class="dropdown-item" href="#" onclick="toggleMode('dark')">
+                                        <i class="bx bx-moon"></i> Dark mode
+                                    </a>
 									<a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>Profile</a>
 									<a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
 									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>

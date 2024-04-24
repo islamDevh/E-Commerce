@@ -31,3 +31,14 @@
 <!-- custom js -->
 <script src="{{URL::asset('assets/js/custom.js')}}"></script><!-- Left-menu js-->
 <script src="{{URL::asset('assets/plugins/side-menu/sidemenu.js')}}"></script>
+<!--Dark mode and light mode-->
+<script>
+    function toggleMode(mode) {
+        const body = document.getElementById('body');
+        if (mode === 'light') {
+            body.classList.remove('dark-theme');
+        } else if (mode === 'dark') {
+            body.classList.add('dark-theme');
+        }
+    }
+</script>
