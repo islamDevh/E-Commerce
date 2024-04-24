@@ -29,6 +29,10 @@
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')
 
+                <script>
+                    const userID = "{{Auth::id()}}";
+                </script>
+                <script src="{{URL::asset('js/app.js')}}"></script>
 
 	</body>
 </html>
