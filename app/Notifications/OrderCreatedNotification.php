@@ -30,9 +30,9 @@ class OrderCreatedNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable) //notifiable is the model of user
+    public function via($notifiable) //notifiable means the model of user
     {
-        return ['mail']; //
+        return ['mail','database']; //
         $channels = ['database']; //default channel
         if($notifiable->notification_preferences['order_created']['sms'] ?? false) {
             $channels[] = 'vonage';
@@ -65,6 +65,15 @@ class OrderCreatedNotification extends Notification
                     ->action('view order', url('/dashboard'))
                     ->line('Thank you for using our application!');
                     // ->view(''); //for custom template view
+    }
+
+    public function toDatabase($notifiable){
+        return [
+            'body'     => "a New Order: $notifiable->name} # created by.",
+            'icon'     => 'la la-shopping-basket text-white',
+            'url'      => url('/dashboard'), //should be order.blade for adminDashboard
+            'order_id' => $this->order->id,
+        ];
     }
 
     /**

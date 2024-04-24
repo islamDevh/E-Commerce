@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         $pages = Page::all();
-        return view('home',compact('pages'));
-        
+        return view('dashboard',compact('pages'));
+
     }
 }

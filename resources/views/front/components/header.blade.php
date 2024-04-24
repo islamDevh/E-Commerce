@@ -86,7 +86,7 @@
                             <a href="#" class="link-direction">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">0 </span>
+                                    <span class="index">0 item</span>
                                     <span class="title">Wishlist</span>
                                 </div>
                             </a>
@@ -95,7 +95,7 @@
                             <a href="{{route('cart.index')}}" class="link-direction">
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">items: {{ $count }}</span>
+                                    <span class="index">4 items</span>
                                     <span class="title">CART</span>
                                 </div>
                             </a>
@@ -113,7 +113,24 @@
                 </div>
             </div>
 
-            <div class="nav-section header-sticky" style="font-size:18px;">
+            <div class="nav-section header-sticky">
+                <div class="header-nav-section">
+                    <div class="container">
+                        <ul class="nav menu-nav clone-main-menu" id="mercado_haead_menu" data-menuname="Sale Info">
+                            <li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span
+                                    class="nav-label hot-label">hot</span></li>
+                            <li class="menu-item"><a href="#" class="link-term">Hot Sale items</a><span
+                                    class="nav-label hot-label">hot</span></li>
+                            <li class="menu-item"><a href="#" class="link-term">Top new items</a><span
+                                    class="nav-label hot-label">hot</span></li>
+                            <li class="menu-item"><a href="#" class="link-term">Top Selling</a><span
+                                    class="nav-label hot-label">hot</span></li>
+                            <li class="menu-item"><a href="#" class="link-term">Top rated items</a><span
+                                    class="nav-label hot-label">hot</span></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="primary-nav-section">
                     <div class="container">
                         <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
@@ -128,10 +145,10 @@
                                 <a href="{{ route('shop.index') }}" class="link-term mercado-item-title">Shop</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{route('cart.index')}}" class="link-term mercado-item-title">Cart</a>
+                                <a href="cart.html" class="link-term mercado-item-title">Cart</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{route('checkout.index')}}" class="link-term mercado-item-title">Checkout</a>
+                                <a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{route('ContactUs.index')}}" class="link-term mercado-item-title">Contact Us</a>

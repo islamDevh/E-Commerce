@@ -29,10 +29,19 @@ class DeductProductQuantity
      */
     public function handle($event)
     {
-        $order = $event->order;
-        foreach($order->products as $product) {
-            Product::where('id', $product->id)->decrement('quantity', $product->pivot->quantity);
+        try {
+            $order = $event->order;
+            foreach ($order->products as $product) {
+                Product::where('id', $product->id)->decrement('quantity', $product->pivot->quantity);
+            }
+        } catch (\Exception $e) {
+            // Handle the exception here
+            // For example:
+            // Log the error
+            // Return a response
+            // Rollback any database transactions if needed
         }
+
         //or
         // foreach(Cart::get() as $item) {
         //     Product::where('id','=',$item->product_id)->decrement('quantity', $item->quantity);
