@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
 class CartModelRepository implements CartRepository
@@ -33,7 +34,7 @@ class CartModelRepository implements CartRepository
             ->first();
         if (!$item) {
             $cart = Cart::create([
-                'user_id' => null,
+                'user_id' => Auth::id(),
                 'product_id' => $product->id,
                 'quantity' => $quantity,
             ]);

@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class OrderCreatedNotification extends Notification
 {
@@ -32,7 +33,7 @@ class OrderCreatedNotification extends Notification
      */
     public function via($notifiable) //notifiable means the model of user
     {
-        return ['mail','database']; //
+        return ['mail','database','broadcast'];
         $channels = ['database']; //default channel
         if($notifiable->notification_preferences['order_created']['sms'] ?? false) {
             $channels[] = 'vonage';
@@ -74,6 +75,15 @@ class OrderCreatedNotification extends Notification
             'url'      => url('/dashboard'), //should be order.blade for adminDashboard
             'order_id' => $this->order->id,
         ];
+    }
+
+    public function toBroadcast($notifiable){
+        return new BroadcastMessage([
+            'body'     => "a New Order: $notifiable->name} # created by.",
+            'icon'     => 'la la-shopping-basket text-white',
+            'url'      => url('/dashboard'), //should be order.blade for adminDashboard
+            'order_id' => $this->order->id,
+        ]);
     }
 
     /**
