@@ -116,7 +116,6 @@
 								<div class="dropdown-menu">
 									<div class="main-header-profile bg-primary p-3">
 										<div class="d-flex wd-100p">
-											<div class="main-img-user"><img alt="" src="{{URL::asset('')}}{{Auth::user()->image}}" class=""></div>
 											<div class="mr-3 my-auto">
 												<h6>{{Auth::user()->name}} </h6><span>{{Auth::user()->email}}</span>
 											</div>

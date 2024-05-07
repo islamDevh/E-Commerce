@@ -32,6 +32,26 @@
 <script src="{{URL::asset('assets/js/custom.js')}}"></script><!-- Left-menu js-->
 <script src="{{URL::asset('assets/plugins/side-menu/sidemenu.js')}}"></script>
 <!--Dark mode and light mode-->
+<!--Internal  Chart.bundle js -->
+<script src="{{URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+<!-- Moment js -->
+<script src="{{URL::asset('assets/plugins/raphael/raphael.min.js')}}"></script>
+<!--Internal  Flot js-->
+<script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.pie.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.resize.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.categories.js')}}"></script>
+<script src="{{URL::asset('assets/js/dashboard.sampledata.js')}}"></script>
+<script src="{{URL::asset('assets/js/chart.flot.sampledata.js')}}"></script>
+<!--Internal Apexchart js-->
+<script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
+<!-- Internal Map -->
+<script src="{{URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+<script src="{{URL::asset('assets/js/modal-popup.js')}}"></script>
+<!--Internal  index js -->
+<script src="{{URL::asset('assets/js/index.js')}}"></script>
+<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>
 <script>
     function toggleMode(mode) {
         const body = document.getElementById('body');
@@ -42,4 +62,31 @@
         }
     }
 </script>
+
+
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
+
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('46d62cc4c8132512ef42', {
+        cluster: 'ap2'
+    });
+
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('App\\Events\\OrderCreated', function(data) {
+        alert(JSON.stringify(data.order.payment_method));
+        // console.log(data.order.payment_method);
+
+    });
+</script>
+
+
+{{-- <script>
+    const = userID = "{{ Auth::id() }}";
+</script>
+<script src="{{URL::asset('js/app.js')}}"></script> --}}
+
+
 

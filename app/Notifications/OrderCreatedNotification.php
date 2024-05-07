@@ -79,7 +79,6 @@ class OrderCreatedNotification extends Notification
 
     public function toBroadcast($notifiable){
         return new BroadcastMessage([
-
             'body'     => "a New Order: $notifiable->name} # created by.",
             'icon'     => 'la la-shopping-basket text-white',
             'url'      => url('/dashboard'), //should be order.blade for adminDashboard

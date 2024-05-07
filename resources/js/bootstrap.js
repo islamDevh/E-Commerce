@@ -22,18 +22,19 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 import Echo from 'laravel-echo';
 
-window.Pusher = require('pusher-js');
+// window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: true
-});
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
+// });
 
-var channel = Echo.private(`App.Models.User.${userId}`);
-// .my-event means =>'App.events.my-event'
-channel.notification(function(data) { //notification get default event name
-    console.log(data);
-    alert(data.body);
-});
+// var channel = Echo.private(`App.Models.User.${userId}`); //name of channel
+// // .my-event means =>'App.Events.my-event'
+// channel.notification(function(data) { //notification get default Event name
+//     console.log(data);
+//     console.log("done");
+//     alert(data.body);
+// });
