@@ -35,7 +35,9 @@
 							</div>
 							<div class="dropdown nav-item main-header-message ">
 								<a class="new nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span class=" pulse-danger"></span></a>
-								<div class="dropdown-menu">
+
+
+                                <div class="dropdown-menu">
 									<div class="menu-header-content bg-primary text-right">
 										<div class="d-flex">
 											<h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">Messages</h6>
@@ -110,7 +112,11 @@
 									</div>
 								</div>
 							</div>
+
+
                             <x-admin.notifications-menu count="5"/>
+
+
 							<div class="dropdown main-profile-menu nav nav-item nav-link">
 								<a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset('')}}{{Auth::user()->image}}"></a>
 								<div class="dropdown-menu">
@@ -151,3 +157,26 @@
 				</div>
 			</div>
 <!-- /main-header -->
+
+<script>
+    var notificationsWrapper   = $('.dropdown-notifications');
+    var notificationsCountElem = notificationsWrapper.find('p[data-count]'); //get data-count="0"
+    var notificationsCount     = parseInt(notificationsCountElem.data('count')); //convert data-count="0" to int
+    var notificationsList      = notificationsWrapper.find('.main-notification-list'); // Selecting the notifications list element
+    Pusher.logToConsole = true;
+    var pusher = new Pusher('46d62cc4c8132512ef42', {
+        cluster: 'ap2'
+    });
+    var channel = pusher.subscribe('my-channel');
+
+    channel.bind('App\\Events\\OrderCreated', function(data) {
+        // Update count
+        notificationsCount++;
+        notificationsCountElem.text(notificationsCount);
+        var existingNotifications = notifications.html();
+        var newNotificationHtml = '<h5 class="notification-label mb-1"></h5><br>';
+        // alert(JSON.stringify(data.order.payment_method));
+        // console.log(data.order.payment_method);
+
+    });
+</script>

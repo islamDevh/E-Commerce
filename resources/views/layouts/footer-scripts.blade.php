@@ -64,23 +64,10 @@
 </script>
 
 
+
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-<script>
-
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('46d62cc4c8132512ef42', {
-        cluster: 'ap2'
-    });
 
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('App\\Events\\OrderCreated', function(data) {
-        alert(JSON.stringify(data.order.payment_method));
-        // console.log(data.order.payment_method);
-
-    });
-</script>
 
 
 {{-- <script>
