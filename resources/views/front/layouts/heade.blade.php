@@ -12,3 +12,5 @@
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('front/assets')}}/css/chosen.min.css">
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('front/assets')}}/css/style.css">
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('front/assets')}}/css/color-01.css">
+
+	@yield('css')

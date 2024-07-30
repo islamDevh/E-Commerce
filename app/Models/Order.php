@@ -30,6 +30,10 @@ class Order extends Model
         return $this->hasMany(OrderAddress::class);
     }
 
+    public function items(){
+        return $this->hasMany(OrderProduct::class, 'order_id');
+    }
+
     protected  static function booted()
     {
         static::creating(function (Order $order) {

@@ -16,9 +16,6 @@ class CheckoutController extends Controller
 {
     public function index(CartRepository $cart)
     {
-        if (!Auth::check() || $cart->get()->count() == 0) {
-            return redirect()->route('front.index');
-        }
         return view('front.checkout.index', ['cart' => $cart]);
     }
 
@@ -56,9 +53,9 @@ class CheckoutController extends Controller
             DB::commit();
 
             // event('order.created', $order, Auth::user());
-            event(new OrderCreated($order));
+            // event(new OrderCreated($order));
 
-            return redirect()->route('front.index')->with('success', 'Your order has been successfully placed.');
+            return redirect()->route('orders.payemnts.create', $order->id);
         } catch (Throwable $e) {
             DB::rollBack();
             throw $e;

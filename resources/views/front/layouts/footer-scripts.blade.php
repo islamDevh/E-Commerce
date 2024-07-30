@@ -7,3 +7,5 @@
 	<script src="{{URL::asset('front/assets/js')}}/jquery.countdown.min.js"></script>
 	<script src="{{URL::asset('front/assets/js')}}/jquery.sticky.js"></script>
 	<script src="{{URL::asset('front/assets/js')}}/functions.js"></script>
+
+	@yield('js')

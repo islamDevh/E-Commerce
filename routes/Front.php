@@ -9,6 +9,7 @@ use App\Http\Controllers\Front\CheckoutController;
 use App\Http\Controllers\Front\RegisterController;
 use App\Http\Controllers\Front\ContactUsController;
 use App\Http\Controllers\Front\FrontPageController;
+use App\Http\Controllers\Front\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +59,10 @@ Route::group(['prefix' => 'front'], function () {
         Route::get('/', [CheckoutController::class, 'index'])->name('index');
         Route::post('/store', [CheckoutController::class, 'store'])->name('store');
     });
+
+    Route::get('orders/{order}/pay', [PaymentsController::class, 'create'])->name('orders.payemnts.create');
+    Route::post('orders/{order}/stripe/payment-intent', [PaymentsController::class, 'createStripePaymentIntent'])
+    ->name('stripe.paymentIntent.create');
+
+    Route::get('orders/{order}/pay/stripe/callback', [PaymentsController::class, 'confirm'])->name('stripe.return');
 });
