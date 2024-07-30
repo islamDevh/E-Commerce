@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::resource('/products', [ProductController::class])->except(['create', 'edit']);
+// Route::resource('/products', [ProductController::class])->except(['create', 'edit']);

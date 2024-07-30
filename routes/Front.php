@@ -9,7 +9,6 @@ use App\Http\Controllers\Front\CheckoutController;
 use App\Http\Controllers\Front\RegisterController;
 use App\Http\Controllers\Front\ContactUsController;
 use App\Http\Controllers\Front\FrontPageController;
-use App\Http\Controllers\Front\FrontSettingController;
 
 /*
 |--------------------------------------------------------------------------
