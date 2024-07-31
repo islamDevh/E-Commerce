@@ -10,6 +10,7 @@ use App\Http\Controllers\Front\RegisterController;
 use App\Http\Controllers\Front\ContactUsController;
 use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\PaymentsController;
+use App\Http\Controllers\Front\StripeWebhooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,4 +66,6 @@ Route::group(['prefix' => 'front'], function () {
     ->name('stripe.paymentIntent.create');
 
     Route::get('orders/{order}/pay/stripe/callback', [PaymentsController::class, 'confirm'])->name('stripe.return');
+
+    Route::any('stripe/webhook', [StripeWebhooksController::class, 'handle'])->name('handle.stripe.webhook');
 });
