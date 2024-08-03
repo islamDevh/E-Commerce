@@ -57,9 +57,9 @@
 						<div class="choose-payment-methods">
 							<!-- Add onchange event listeners to radio buttons -->
 							<div>
-								{{-- <input id="stripe" name="payment_method" value="stripe" type="radio" onchange="updateFormAction()">
+								<input id="stripe" name="payment_method" value="stripe" type="radio" onchange="updateFormAction()">
 								<label for="stripe">Checkout with Stripe</label>
-								<br> --}}
+								<br>
 								<input id="paypal" name="payment_method" value="paypal" type="radio" onchange="updateFormAction()">
 								<label for="paypal">Checkout with PayPal</label>
 							</div>
