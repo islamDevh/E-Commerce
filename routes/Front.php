@@ -1,15 +1,16 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Front\ProductDetail;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\ShopController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\CheckoutController;
+use App\Http\Controllers\Front\PaymentsController;
 use App\Http\Controllers\Front\RegisterController;
 use App\Http\Controllers\Front\ContactUsController;
 use App\Http\Controllers\Front\FrontPageController;
-use App\Http\Controllers\Front\PaymentsController;
 use App\Http\Controllers\Front\StripeWebhooksController;
 
 /*
@@ -24,7 +25,15 @@ use App\Http\Controllers\Front\StripeWebhooksController;
  */
 Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
+Route::get('/clear', function () {
 
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+
+});
 Route::group(['prefix' => 'front'], function () {
 
     Route::group(['prefix' => 'register', 'as' => 'register.'], function () {
@@ -58,7 +67,10 @@ Route::group(['prefix' => 'front'], function () {
 
     Route::group(['prefix' => 'checkout', 'as' => 'checkout.'], function () {
         Route::get('/', [CheckoutController::class, 'index'])->name('index');
-        Route::post('/store', [CheckoutController::class, 'store'])->name('store');
+        Route::post('/stripe', [CheckoutController::class, 'storeStripe'])->name('store.stripe');
+        Route::get('/paypal', [CheckoutController::class, 'storePaypal'])->name('store.paypal');
+        Route::get('/paypal/success', [CheckoutController::class, 'paypalSuccess'])->name('paypal.success');
+        Route::get('/paypal/cancel', [CheckoutController::class, 'paypalCancel'])->name('paypal.cancel');
     });
 
     Route::get('orders/{order}/pay', [PaymentsController::class, 'create'])->name('orders.payemnts.create');

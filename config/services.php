@@ -30,6 +30,12 @@ return [
         'secret_key' => env('STRIPE_SECRET_KEY'),
     ],
 
+    'paypal' => [
+        'mode' => env('PAYPAL_MODE', 'sandbox'),
+        'PAYPAL_client_id' => env('PAYPAL_CLIENT_ID'),
+        'PAYPAL_CLIENT_SECRET' => env('PAYPAL_CLIENT_SECRET'),
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
